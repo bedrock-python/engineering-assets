@@ -1,19 +1,14 @@
 # Code owners of this hub on GitHub. A merge here turns into a pull request in
 # every target, and the workflows decide who holds the write key, so every
-# change to these paths needs a review by the hub's maintainers. Replace
-# @acme/hub-maintainers with your team, and turn on "Require review from Code
-# Owners" in the default branch's ruleset. Later lines win: add owners for
-# single packs below the first block.
+# change to these paths needs a review by the hub's maintainers; the default
+# branch's ruleset requires it. The organisation has a single maintainer and
+# no teams yet: replace the login with a team once it has one. Later lines
+# win: add owners for single packs below the first block.
 
-/packs/            @acme/hub-maintainers
-/hub.yml           @acme/hub-maintainers
-/targets.yml       @acme/hub-maintainers
-/.touchmark/       @acme/hub-maintainers
-/.github/          @acme/hub-maintainers
-/.gitlab-ci.yml    @acme/hub-maintainers
-/.gitlab/          @acme/hub-maintainers
-/.gitea/           @acme/hub-maintainers
-/renovate.json     @acme/hub-maintainers
-/scripts/          @acme/hub-maintainers
+/packs/            @AlexeyShalaev
+/hub.yml           @AlexeyShalaev
+/targets.yml       @AlexeyShalaev
+/.touchmark/       @AlexeyShalaev
+/.github/          @AlexeyShalaev
+/scripts/          @AlexeyShalaev
 
-# /packs/python-service/  @acme/hub-maintainers @acme/backend-guild
