@@ -80,9 +80,9 @@ That is `defaults.packs` of `targets.yml`, with `agents` placed before the packs
 | `.claude/skills/review-change/SKILL.md` | claude | missing | - | yes |
 | `.claude/skills/spec/SKILL.md` | claude | missing | - | yes |
 | `CLAUDE.md` | claude | missing | - | no |
-| `docs/guidelines/public-api.md` | python-library | missing | - | no |
-| `docs/guidelines/python.md` | python-library | missing | - | no |
-| `docs/guidelines/testing.md` | python-library | missing | - | no |
+| `.agents/guidelines/public-api.md` | python-library | missing | - | no |
+| `.agents/guidelines/python.md` | python-library | missing | - | no |
+| `.agents/guidelines/testing.md` | python-library | missing | - | no |
 
 Sensitive files are those the pull request description lists under ⚠: touchmark's built-in list (workflows, `dependabot.yml`, `.claude/settings*.json`, `.claude/agents/**`, `.claude/skills/**`, ...) and `sensitive_paths` of `hub.yml`. Skills are on the list because a skill's `allowed-tools` lets Claude Code use those tools without asking.
 
@@ -106,9 +106,9 @@ grpc-client-kit also keeps its pull request template and `feature_request.yml` w
 
 **The starter packs are new everywhere.** No library has `AGENTS.md`, `CLAUDE.md`, or anything under `.agents/` or `.claude/`, so every target would get one pull request that creates the files of `agents`, `claude` and `python-library`.
 
-Two things to know before that pull request goes out:
+Two things to know about that pull request:
 
-- `python-library` ships `docs/guidelines/*.md`, and `docs/` is the libraries' zensical `docs_dir`. Their `zensical.toml` lists `nav` explicitly, so the guidelines would be built and published on every documentation site as pages that no menu links to, and `scripts/emit_markdown.py` would publish their Markdown next to them. Either the maintainers accept that, or the guidelines move out of `docs/` (a change to the starter pack) before the first library gets them.
+- `python-library` ships its guidelines to `.agents/guidelines/`, not to `docs/`: `docs/` is the libraries' zensical `docs_dir`, and the guidelines would have been published on every documentation site as pages no menu links to. The template's starter packs made the same move.
 - `.claude/settings.json`, `.claude/agents/reviewer.md` and the five skills under `.claude/skills/` are sensitive: the pull request lists them under ⚠.
 
 ## What the report cannot show
@@ -128,7 +128,7 @@ All on 2026-10-02, with touchmark `c79e14e`:
 
   Both runs warn that the writer's bot login is unknown to GitHub: the App does not exist yet.
 - **`scripts/plan-bedrock.sh --status-only`** on Windows and in a Linux container: every file of the 13 targets is in the state the file table gives.
-- **With a read token**: not run yet. `TOUCHMARK_GH_READ_TOKEN=... scripts/plan-bedrock.sh --status` is the criterion.
+- **With the reader App's key**, on 2026-10-07: `TOUCHMARK_GH_READ_APP_ID=... TOUCHMARK_GH_READ_APP_KEY=... TOUCHMARK_HUB_FP=github.com/1408350934 scripts/plan-bedrock.sh --status`, in a `golang:1.27` container for its git 2.47 (`plan` needs git 2.45 or newer): plan and status match expected.md, 13 targets and 24 files. The only warning says that a local run cannot read the tip of the hub's default branch.
 
 ## Format
 
