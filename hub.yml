@@ -33,8 +33,7 @@ providers:
   - id: gh
     type: github                 # github.com, GHE.com or GitHub Enterprise Server
     url: https://github.com
-    # PLACEHOLDER until the writer App exists: its bot login, <slug>[bot]
-    # (README, "Before the first run"). The reader App,
+    # The writer App's bot login, <slug>[bot]. The reader App,
     # bedrock-python-assets-read, is not named here: plan learns its login
     # from its key.
     writer: bedrock-python-assets-write[bot]
