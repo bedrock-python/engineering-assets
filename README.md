@@ -31,7 +31,7 @@ A new library is a target once it has the topic `python` and both of the hub's G
 
 ## What a sync would do
 
-[expected.md](expected.md) says, per library and file, what `touchmark plan` should report today: the first two packs change nothing, four libraries keep files of their own (`local`), and every library would get one pull request with the starter packs. It also suggests, per `local` file, whether to adopt it, ignore it or fold its change into the pack.
+[expected.md](expected.md) says, per library and file, what `touchmark plan` should report today: after the rollout, nothing changes anywhere. Every library's `.agents/project.md` is its own (`local`), and mattermind and pg-partsmith keep one file each through `ignore` in their `.engineering-assets.yml`.
 
 Check it in one command, with a read-only GitHub token (a fine-grained token with the default *Public repositories* access is enough, since every target is public):
 
