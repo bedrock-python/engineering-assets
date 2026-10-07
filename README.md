@@ -4,7 +4,7 @@
 
 This is the hub of the bedrock-python organisation, created from [engineering-assets-template](https://github.com/bedrock-python/engineering-assets-template). Its CI runs [touchmark](https://github.com/bedrock-python/touchmark): whenever a pack changes, every library the hub subscribes gets a pull request with the change, and a file a library has made its own stays its own.
 
-*Running since 2026-10-07: every library is subscribed. [Rollout](#rollout) says how it went and what is left.*
+*Running since 2026-10-07: every library is subscribed and has the hub's files. [Rollout](#rollout) says how it went.*
 
 ```
 bedrock-python/engineering-assets          this hub: packs/, hub.yml, targets.yml
@@ -72,7 +72,7 @@ The reader's keys are the repository variable `TOUCHMARK_READ_APP_ID` and secret
 
 1. **The first library**, 2026-10-07. GitHub Actions on, and Run workflow: the hub opened one sync pull request, in deadline-budget (bedrock-python/deadline-budget#29, 15 files), the one library `targets.yml` subscribed then. A review of it changed the starter packs before the merge: the guidelines moved to `.agents/guidelines/`, and `AGENTS.md` says what agents do while `.agents/project.md` is blank. deadline-budget then filled in its profile (bedrock-python/deadline-budget#31), which is its own from then on.
 2. **Every library**, 2026-10-07: `defaults.opt_in: assumed` in `targets.yml`. Its merge opens a sync pull request in each of the other twelve libraries, which says the hub subscribed it and how to opt out.
-3. **Left: the `local` files** of expected.md, in clientwright, grpc-client-kit, mattermind and pg-partsmith. touchmark leaves them alone and says so in each pull request. For each: adopt (`touchmark apply --adopt <path>` in the library, through a pull request there), ignore (`ignore` in an `.engineering-assets.yml` the library adds), or fold the change into the pack here. Each library's profile is its own to fill in, as deadline-budget's.
+3. **The libraries' own files**, 2026-10-07. clientwright's and pg-partsmith's improvements to `docs.yml` went into `zensical-docs` (#5) and both took the hub's version back; grpc-client-kit took back three copies that differed only in line endings; mattermind keeps its own `docs.yml` and pg-partsmith its own `dependabot.yml`, through `ignore` in their `.engineering-assets.yml`. Every library filled in its `.agents/project.md`. expected.md describes the result.
 
 After that, the hub runs itself: `distribute` on every merge to `master` and daily, `doctor` weekly. A new library joins once it has the topic `python` and both Apps are installed on it; a new Python repository that is not a library goes under `exclude` in `targets.yml`. In a public repository GitHub disables scheduled workflows after 60 days without activity; re-enable the workflow if the daily run stops.
 
