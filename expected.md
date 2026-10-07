@@ -4,7 +4,7 @@ touchmark's check against a real fleet: `touchmark plan --assume-opt-in --all` o
 
 ## How it was computed
 
-Independently of touchmark, on 2026-10-02:
+Independently of touchmark, on 2026-10-02, and for deadline-budget again on 2026-10-07, after its first sync pull request was merged:
 
 1. The blob id of every file the packs ship, from this hub's last commit (`git ls-tree -r HEAD packs/`).
 2. The blob id of every file of every target at its default branch, from `GET /repos/bedrock-python/<repo>/git/trees/HEAD?recursive=1`, the same comparison as a first count of the drift on 2026-09-23. Its counts still hold: `copy-page.js`, `copy-page.css`, `overrides/main.html`, `emit_markdown.py` and `CODE_OF_CONDUCT.md` have one version across the 13 libraries; `.editorconfig`, `dependabot.yml` and `release-please.yml` two (12 of 13 agree); the pull request template and `feature_request.yml` four (10 of 13 agree); `docs.yml` five and `.gitignore` seven.
@@ -12,9 +12,9 @@ Independently of touchmark, on 2026-10-02:
 
 The expectation holds while:
 
-- no target has an `.engineering-assets.yml` of its own (none has one today). `targets.yml` subscribes deadline-budget, and `--assume-opt-in` plans the other twelve as if they had an empty one;
+- no target has an `.engineering-assets.yml` of its own (none has one today). `targets.yml` subscribes every target (`defaults.opt_in: assumed`), so `--assume-opt-in` changes nothing;
 - the organisation's repositories with the topic `python`, minus the `exclude` patterns of `targets.yml`, are these 13. A new one shows up as an unexpected target;
-- touchmark has opened no sync pull request in any target;
+- touchmark has no open sync pull request in any target: deadline-budget's first one, #29, is merged, and the others are not opened yet;
 - the targets' copies of these files and the packs stay as they are. Any commit that changes one of them changes the expectation: compute it again.
 
 The default branches it was computed at:
@@ -24,7 +24,7 @@ The default branches it was computed at:
 | aiokafka-foundation-kit | `ac6d350d1f47243a5873756e38f9069ccbc897c4` |
 | alembic-gauntlet | `422de2f7623947e6b5f81a76a9e3aeb7a3c39d31` |
 | clientwright | `90bc12656b67185f86bcdb4fda1e0af39d94f7f0` |
-| deadline-budget | `19a66ccf028fffef1f7ea7871f2e14b793f8a76b` |
+| deadline-budget | `a85adea643be24d393635477c41b779091a42acb` |
 | grpc-client-kit | `2164662e66d50849b38fe53dd43c29f60c7784aa` |
 | grpc-server-kit | `cc159ec2b2abe8a53e45289a96c17f55c8551b4d` |
 | idempotency-kit | `158865d54cc9b8bacd1c3023806092d083682115` |
@@ -46,7 +46,7 @@ That is `defaults.packs` of `targets.yml`, with `agents` placed before the packs
 | `bedrock-python/aiokafka-foundation-kit` | opened | 15 | 0 | 0 |
 | `bedrock-python/alembic-gauntlet` | opened | 15 | 0 | 0 |
 | `bedrock-python/clientwright` | opened | 15 | 0 | 0 |
-| `bedrock-python/deadline-budget` | opened | 15 | 0 | 0 |
+| `bedrock-python/deadline-budget` | unchanged | 0 | 0 | 0 |
 | `bedrock-python/grpc-client-kit` | opened | 15 | 0 | 0 |
 | `bedrock-python/grpc-server-kit` | opened | 15 | 0 | 0 |
 | `bedrock-python/idempotency-kit` | opened | 15 | 0 | 0 |
@@ -68,21 +68,21 @@ That is `defaults.packs` of `targets.yml`, with `agents` placed before the packs
 | `.github/dependabot.yml` | bedrock-community | current | local: pg-partsmith | yes |
 | `.github/workflows/release-please.yml` | bedrock-community | current | local: grpc-client-kit | yes |
 | `CODE_OF_CONDUCT.md` | bedrock-community | current | - | no |
-| `.agents/project.md` | agents | missing | - | no |
-| `.agents/prompts/refactor-check.md` | agents | missing | - | no |
-| `.agents/prompts/review.md` | agents | missing | - | no |
-| `AGENTS.md` | agents | missing | - | no |
-| `.claude/agents/reviewer.md` | claude | missing | - | yes |
-| `.claude/settings.json` | claude | missing | - | yes |
-| `.claude/skills/commit/SKILL.md` | claude | missing | - | yes |
-| `.claude/skills/new-branch/SKILL.md` | claude | missing | - | yes |
-| `.claude/skills/pr/SKILL.md` | claude | missing | - | yes |
-| `.claude/skills/review-change/SKILL.md` | claude | missing | - | yes |
-| `.claude/skills/spec/SKILL.md` | claude | missing | - | yes |
-| `CLAUDE.md` | claude | missing | - | no |
-| `.agents/guidelines/public-api.md` | python-library | missing | - | no |
-| `.agents/guidelines/python.md` | python-library | missing | - | no |
-| `.agents/guidelines/testing.md` | python-library | missing | - | no |
+| `.agents/project.md` | agents | missing | local: deadline-budget | no |
+| `.agents/prompts/refactor-check.md` | agents | missing | current: deadline-budget | no |
+| `.agents/prompts/review.md` | agents | missing | current: deadline-budget | no |
+| `AGENTS.md` | agents | missing | current: deadline-budget | no |
+| `.claude/agents/reviewer.md` | claude | missing | current: deadline-budget | yes |
+| `.claude/settings.json` | claude | missing | current: deadline-budget | yes |
+| `.claude/skills/commit/SKILL.md` | claude | missing | current: deadline-budget | yes |
+| `.claude/skills/new-branch/SKILL.md` | claude | missing | current: deadline-budget | yes |
+| `.claude/skills/pr/SKILL.md` | claude | missing | current: deadline-budget | yes |
+| `.claude/skills/review-change/SKILL.md` | claude | missing | current: deadline-budget | yes |
+| `.claude/skills/spec/SKILL.md` | claude | missing | current: deadline-budget | yes |
+| `CLAUDE.md` | claude | missing | current: deadline-budget | no |
+| `.agents/guidelines/public-api.md` | python-library | missing | current: deadline-budget | no |
+| `.agents/guidelines/python.md` | python-library | missing | current: deadline-budget | no |
+| `.agents/guidelines/testing.md` | python-library | missing | current: deadline-budget | no |
 
 Sensitive files are those the pull request description lists under ⚠: touchmark's built-in list (workflows, `dependabot.yml`, `.claude/settings*.json`, `.claude/agents/**`, `.claude/skills/**`, ...) and `sensitive_paths` of `hub.yml`. Skills are on the list because a skill's `allowed-tools` lets Claude Code use those tools without asking.
 
@@ -104,7 +104,7 @@ Sensitive files are those the pull request description lists under ⚠: touchmar
 
 grpc-client-kit also keeps its pull request template and `feature_request.yml` with CRLF line endings; no pack ships them.
 
-**The starter packs are new everywhere.** No library has `AGENTS.md`, `CLAUDE.md`, or anything under `.agents/` or `.claude/`, so every target would get one pull request that creates the files of `agents`, `claude` and `python-library`.
+**The starter packs are new everywhere but in deadline-budget.** No other library has `AGENTS.md`, `CLAUDE.md`, or anything under `.agents/` or `.claude/`, so each of the twelve would get one pull request that creates the files of `agents`, `claude` and `python-library`. deadline-budget has them from its first sync pull request (#29), and its filled-in `.agents/project.md` is its own (`local`), so it stays `unchanged`.
 
 Two things to know about that pull request:
 

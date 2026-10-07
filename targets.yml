@@ -19,10 +19,9 @@ defaults:
   # so they connect with an empty diff (expected.md); the starter packs are
   # new everywhere, and they are what the first sync pull requests carry.
   packs: [zensical-docs, bedrock-community, agents, claude, python-library]
-  # The hub subscribes the libraries itself: they share one owner with it.
-  # Step 2 of the rollout (README): once deadline-budget's first sync pull
-  # request is merged, uncomment this and drop the deadline-budget entry.
-  # opt_in: assumed
+  # The hub subscribes the libraries itself: they share one owner with it. A
+  # library opts out with enabled: false in its .engineering-assets.yml.
+  opt_in: assumed
 
 targets:
   # The libraries created from bedrock-python/python-library-template: the
@@ -31,9 +30,6 @@ targets:
   # once both of the hub's GitHub Apps are installed on it.
   - org: bedrock-python
     topics: [python]
-  # Step 1 of the rollout: one library without files of its own.
-  - repo: bedrock-python/deadline-budget
-    opt_in: assumed
 
 # Python repositories that are not libraries: mr-review (an application with
 # its own agent setup), the blog, and python-library-template itself, whose
