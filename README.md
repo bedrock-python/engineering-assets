@@ -4,7 +4,7 @@
 
 This is the hub of the bedrock-python organisation, created from [engineering-assets-template](https://github.com/bedrock-python/engineering-assets-template). Its CI runs [touchmark](https://github.com/bedrock-python/touchmark): whenever a pack changes, every library the hub subscribes gets a pull request with the change, and a file a library has made its own stays its own.
 
-*Not running yet: the workflow waits for touchmark's first release and the hub's GitHub Apps. [Before the first run](#before-the-first-run) lists what is left.*
+*Not running yet: the workflow waits for the hub's GitHub Apps and their keys. [Before the first run](#before-the-first-run) lists what is left.*
 
 ```
 bedrock-python/engineering-assets          this hub: packs/, hub.yml, targets.yml
@@ -56,26 +56,27 @@ The way a new organisation would:
 
 `touchmark check` passes on the result, and so does the template's `scripts/validate.sh` (check, then actionlint on the workflows).
 
-The repository is public: the organisation is on GitHub Free, where environment secrets exist only in public repositories, and without them the write key cannot be limited to `master`. A ruleset protects `master`: changes only through pull requests with an approving review and a review from Code Owners, no force pushes, no deletion. GitHub doesn't let anyone approve their own pull request, so organisation admins may merge a pull request without them. GitHub Actions stay off until the first run (below), so that neither a push nor the daily schedule starts a workflow whose touchmark pin is still a placeholder.
+The repository is public: the organisation is on GitHub Free, where environment secrets exist only in public repositories, and without them the write key cannot be limited to `master`. A ruleset protects `master`: changes only through pull requests with an approving review and a review from Code Owners, no force pushes, no deletion. GitHub doesn't let anyone approve their own pull request, so organisation admins may merge a pull request without them. GitHub Actions stay off until the first run (below), so that neither a push nor the daily schedule starts a workflow without its keys.
+
+touchmark is pinned to v0.1.0: the Action in `.github/workflows/engineering-assets.yml` by the commit of its tag, `# v0.1.0` after it. The Action at that commit runs the image of v0.1.0 by digest once it has verified the image's build provenance, so there is no image digest to pin here. Dependabot proposes the next release.
 
 ## Before the first run
 
 In order:
 
-1. **touchmark v0.1.0 is released**: Release Please's tag and release, then the publish workflow's binaries, image and attestations. Pin the Action in `.github/workflows/engineering-assets.yml`: replace every `bedrock-python/touchmark@0000…` placeholder, marked by a comment above it, with the commit of the release tag (`git rev-parse v0.1.0^{commit}`), keeping `# v0.1.0` after it. The Action at that commit runs the image of v0.1.0 by digest once it has verified the image's build provenance; there is no image digest to pin here. `scripts/validate.sh --release` fails while a placeholder is left.
-2. **Run the check** with a read token: `TOUCHMARK_GH_READ_TOKEN=... scripts/plan-bedrock.sh --status` exits 0. If a library changed one of these files since 2026-10-02, recompute expected.md first.
-3. **Create the GitHub Apps** in bedrock-python and install each on the 13 libraries only (*Only select repositories*), never on this hub:
+1. **Run the check** with a read token: `TOUCHMARK_GH_READ_TOKEN=... scripts/plan-bedrock.sh --status` exits 0. If a library changed one of these files since 2026-10-02, recompute expected.md first.
+2. **Create the GitHub Apps** in bedrock-python and install each on the 13 libraries only (*Only select repositories*), never on this hub:
    - `bedrock-python-assets-read`: Metadata, Contents and Pull requests read-only;
    - `bedrock-python-assets-write`: Metadata read-only; Contents, Pull requests and Workflows read and write.
 
    If GitHub gives the writer a different name, set `writer` in `hub.yml` to its bot login (`<slug>[bot]`).
-4. **Store the keys** in this repository:
+3. **Store the keys** in this repository:
    - reader: the variable `TOUCHMARK_READ_APP_ID` and the secret `TOUCHMARK_READ_APP_KEY`;
    - writer: an environment `touchmark-distribute` with Deployment branches set to *Selected branches and tags*, rule `master`, holding the variable `TOUCHMARK_WRITE_APP_ID` and the secret `TOUCHMARK_WRITE_APP_KEY`, and nowhere else. Not *Protected branches only*: with no branch rules, every branch qualifies.
-5. **Decide where `python-library`'s guidelines go** before any library gets them: in the libraries' `docs/`, where the documentation site would publish them, or out of `docs/` through a change to the pack (expected.md).
-6. **Turn GitHub Actions on** (Settings → Actions → General), add the workflow's `check` job as a required status check of `master`'s ruleset, and start the workflow (Actions → engineering-assets → Run workflow). Its first run opens one sync pull request, in deadline-budget, the library `targets.yml` subscribes for the first step of the rollout. Read it and merge it.
-7. **Decide the `local` files** of expected.md: adopt (`touchmark apply --adopt <path>` in the library, through a pull request there), ignore (`ignore` in an `.engineering-assets.yml` the library adds), or fold the change into the pack here.
-8. **Subscribe every library**: in `targets.yml`, uncomment `opt_in: assumed` under `defaults` and drop the deadline-budget entry, through a pull request here. Its merge opens a sync pull request in each of the other twelve libraries, which says the hub subscribed it and how to opt out.
+4. **Decide where `python-library`'s guidelines go** before any library gets them: in the libraries' `docs/`, where the documentation site would publish them, or out of `docs/` through a change to the pack (expected.md).
+5. **Turn GitHub Actions on** (Settings → Actions → General), add the workflow's `check` job as a required status check of `master`'s ruleset, and start the workflow (Actions → engineering-assets → Run workflow). Its first run opens one sync pull request, in deadline-budget, the library `targets.yml` subscribes for the first step of the rollout. Read it and merge it.
+6. **Decide the `local` files** of expected.md: adopt (`touchmark apply --adopt <path>` in the library, through a pull request there), ignore (`ignore` in an `.engineering-assets.yml` the library adds), or fold the change into the pack here.
+7. **Subscribe every library**: in `targets.yml`, uncomment `opt_in: assumed` under `defaults` and drop the deadline-budget entry, through a pull request here. Its merge opens a sync pull request in each of the other twelve libraries, which says the hub subscribed it and how to opt out.
 
 After that, the hub runs itself: `distribute` on every merge to `master` and daily, `doctor` weekly. A new library joins once it has the topic `python` and both Apps are installed on it; a new Python repository that is not a library goes under `exclude` in `targets.yml`. In a public repository GitHub disables scheduled workflows after 60 days without activity; re-enable the workflow if the daily run stops.
 
