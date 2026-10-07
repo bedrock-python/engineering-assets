@@ -31,7 +31,7 @@ A new library is a target once it has the topic `python` and both of the hub's G
 
 ## What a sync would do
 
-[expected.md](expected.md) says, per library and file, what `touchmark plan` should report today: the first two packs change nothing, four libraries keep files of their own (`local`), and every library would get one pull request with the starter packs. It also suggests, per `local` file, whether to adopt it, ignore it or fold its change into the pack.
+[expected.md](expected.md) says, per library and file, what `touchmark plan` should report today: after the rollout, nothing changes anywhere. Every library's `.agents/project.md` is its own (`local`), and mattermind and pg-partsmith keep one file each through `ignore` in their `.engineering-assets.yml`.
 
 Check it in one command, with a read-only GitHub token (a fine-grained token with the default *Public repositories* access is enough, since every target is public):
 
@@ -58,7 +58,7 @@ The way a new organisation would:
 
 The repository is public: the organisation is on GitHub Free, where environment secrets exist only in public repositories, and without them the write key cannot be limited to `master`. A ruleset protects `master`: changes only through pull requests with an approving review and a review from Code Owners, no force pushes, no deletion. GitHub doesn't let anyone approve their own pull request, so organisation admins may merge a pull request without them. GitHub Actions were off until the first run ([Rollout](#rollout)); the workflow's `check` job is a required status check, and its default token is read-only.
 
-touchmark is pinned to v0.1.0: the Action in `.github/workflows/engineering-assets.yml` by the commit of its tag, `# v0.1.0` after it. The Action at that commit runs the image of v0.1.0 by digest once it has verified the image's build provenance, so there is no image digest to pin here. Dependabot proposes the next release.
+touchmark is pinned to v0.2.0: the Action in `.github/workflows/engineering-assets.yml` by the commit of its tag, `# v0.2.0` after it. The Action at that commit runs the image of v0.2.0 by digest once it has verified the image's build provenance, so there is no image digest to pin here. Dependabot proposes the next release.
 
 **The GitHub Apps.** Both are installed on the 13 libraries only (*Only select repositories*), never on this hub, with no webhook:
 - `bedrock-python-assets-read`: Metadata, Contents and Pull requests read-only;

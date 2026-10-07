@@ -13,8 +13,9 @@
 # it from the environment and masks it in its output.
 #
 # --status also clones every target anonymously over git (no API calls),
-# runs `touchmark status` in each clone as if it had an empty
-# .engineering-assets.yml, and compares the state of every file: plan's
+# runs `touchmark status --assume-opt-in` in each clone (a library without an
+# .engineering-assets.yml counts as subscribed, as targets.yml makes it; one
+# with the file is read as it is), and compares the state of every file: plan's
 # report only counts the files it would change, status names the files it
 # leaves (current, local). --status-only does only that and needs no token.
 #
@@ -133,8 +134,7 @@ if [ "$run_status" = 1 ]; then
     # committed blob anyway, as plan does.
     git -c core.longpaths=true clone --quiet --depth 1 --config core.autocrlf=false \
       --config core.longpaths=true "https://github.com/$repo.git" "$dir" || die "cannot clone $repo"
-    [ -e "$dir/.engineering-assets.yml" ] || : >"$dir/.engineering-assets.yml"
-    "$tm" status --hub "$hub" --dir "$dir" --repo "gh:$repo" --format json >"$work/status/$name.json" \
+    "$tm" status --hub "$hub" --dir "$dir" --repo "gh:$repo" --assume-opt-in --format json >"$work/status/$name.json" \
       || die "touchmark status failed for $repo"
   done
   args+=(--status "$work/status")
