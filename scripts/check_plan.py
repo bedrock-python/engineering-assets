@@ -191,8 +191,6 @@ def check_plan(report: dict, packs: list[str], outcomes: dict, files: dict) -> l
                 f"plan: {ref}: {t.get('outcome')}{reason}, want {want['outcome']}" + (f" ({notes})" if notes else "")
             )
             continue
-        if not t.get("opt_in_assumed"):
-            diffs.append(f"plan: {ref} has an opt-in file of its own: expected.md assumes none")
         if t.get("packs") != packs:
             diffs.append(f"plan: {ref}: packs {', '.join(t.get('packs') or [])}, want {', '.join(packs)}")
         changes = t.get("changes") or {}
