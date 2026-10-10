@@ -58,7 +58,7 @@ The way a new organisation would:
 
 The repository is public: the organisation is on GitHub Free, where environment secrets exist only in public repositories, and without them the write key cannot be limited to `master`. A ruleset protects `master`: changes only through pull requests with an approving review and a review from Code Owners, no force pushes, no deletion. GitHub doesn't let anyone approve their own pull request, so organisation admins may merge a pull request without them. GitHub Actions were off until the first run ([Rollout](#rollout)); the workflow's `check` job is a required status check, and its default token is read-only.
 
-touchmark is pinned to v0.5.0: the Action in `.github/workflows/engineering-assets.yml` by the commit of its tag, `# v0.5.0` after it. The Action at that commit runs the image of v0.5.0 by digest once it has verified the image's build provenance, so there is no image digest to pin here. Dependabot proposes the next release.
+touchmark is pinned to v0.6.0: the Action in `.github/workflows/engineering-assets.yml` by the commit of its tag, `# v0.6.0` after it. The Action at that commit runs the image of v0.6.0 by digest once it has verified the image's build provenance, so there is no image digest to pin here. Dependabot proposes the next release.
 
 **The GitHub Apps.** Both are installed on the 13 libraries only (*Only select repositories*), never on this hub, with no webhook:
 - `bedrock-python-assets-read`: Metadata, Contents and Pull requests read-only;
