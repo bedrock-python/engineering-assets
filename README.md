@@ -31,7 +31,7 @@ A new library is a target once it has the topic `python` and both of the hub's G
 
 ## What a sync would do
 
-[expected.md](expected.md) says, per library and file, what `touchmark plan` should report today: after the starter packs went deeper on 2026-10-11, every library gets one sync pull request with nine updated files and one new one. Every library's `.agents/project.md` is its own (`local`), and mattermind and pg-partsmith keep one file each through `ignore` in their `.engineering-assets.yml`.
+[expected.md](expected.md) says, per library and file, what `touchmark plan` should report today: after the rollout, nothing changes anywhere. Every library's `.agents/project.md` is its own (`local`), and mattermind and pg-partsmith keep one file each through `ignore` in their `.engineering-assets.yml`.
 
 Check it in one command, with a read-only GitHub token (a fine-grained token with the default *Public repositories* access is enough, since every target is public):
 
@@ -73,6 +73,7 @@ The reader's keys are the repository variable `TOUCHMARK_READ_APP_ID` and secret
 1. **The first library**, 2026-10-07. GitHub Actions on, and Run workflow: the hub opened one sync pull request, in deadline-budget (bedrock-python/deadline-budget#29, 15 files), the one library `targets.yml` subscribed then. A review of it changed the starter packs before the merge: the guidelines moved to `.agents/guidelines/`, and `AGENTS.md` says what agents do while `.agents/project.md` is blank. deadline-budget then filled in its profile (bedrock-python/deadline-budget#31), which is its own from then on.
 2. **Every library**, 2026-10-07: `defaults.opt_in: assumed` in `targets.yml`. Its merge opens a sync pull request in each of the other twelve libraries, which says the hub subscribed it and how to opt out.
 3. **The libraries' own files**, 2026-10-07. clientwright's and pg-partsmith's improvements to `docs.yml` went into `zensical-docs` (#5) and both took the hub's version back; grpc-client-kit took back three copies that differed only in line endings; mattermind keeps its own `docs.yml` and pg-partsmith its own `dependabot.yml`, through `ignore` in their `.engineering-assets.yml`. Every library filled in its `.agents/project.md`. expected.md describes the result.
+4. **Deeper starter packs**, 2026-10-11 (#13, from engineering-assets-template#9): the review prompt in slices with "Justify or remove", the new `.agents/prompts/pure-refactor.md`, working principles in `AGENTS.md`, concrete `python-library` guidelines. One sync pull request per library, 10 files each; all 13 merged the same day with their checks green.
 
 After that, the hub runs itself: `distribute` on every merge to `master` and daily, `doctor` weekly. A new library joins once it has the topic `python` and both Apps are installed on it; a new Python repository that is not a library goes under `exclude` in `targets.yml`. In a public repository GitHub disables scheduled workflows after 60 days without activity; re-enable the workflow if the daily run stops.
 
