@@ -4,12 +4,10 @@ touchmark's check against a real fleet: `touchmark plan --assume-opt-in --all` o
 
 ## Where it stands
 
-The rollout finished on 2026-10-07 (README, "Rollout"), and every library had the hub's files. On 2026-10-11 the starter packs went deeper: the review prompt reviews a large change in slices and asks every addition for its reason, a new prompt `.agents/prompts/pure-refactor.md` checks that a change keeps behaviour, `AGENTS.md` gained working principles, and the `python-library` guidelines gained concrete rules. So every library gets one sync pull request: nine files updated and one created. What differs otherwise, differs on purpose:
+The rollout finished on 2026-10-07 (README, "Rollout"), and the deeper starter packs of 2026-10-11 (#13) reached every library the same day: all 13 sync pull requests are merged. Every library has the hub's files, so a plan changes nothing anywhere. What differs, differs on purpose:
 
 - every library filled in `.agents/project.md`, which is therefore its own (`local`);
 - mattermind keeps its own `.github/workflows/docs.yml`, since its docs dependencies are an extra, and pg-partsmith its own `.github/dependabot.yml`, which adds the `docker` ecosystem. Their `.engineering-assets.yml` lists those files under `ignore`.
-
-Once those pull requests are merged, a plan changes nothing anywhere again: write the expectation again then.
 
 The expectation holds while:
 
@@ -22,19 +20,19 @@ The default branches it was checked at, on 2026-10-11:
 
 | Repository | Commit |
 |---|---|
-| aiokafka-foundation-kit | `3ba88e56975e9d607aa8ce7f05ce0d7566a0108a` |
-| alembic-gauntlet | `50eb84e11c667105713d5632f690e24d67b6b2d4` |
-| clientwright | `7cda21512ab41266e741006329c845adf7db10f8` |
-| deadline-budget | `37e0656b7bb9329df53e8b2bd03979d4a8cf47ba` |
-| grpc-client-kit | `db6452920a1a2b3a8550a64fab174b5bc963cd49` |
-| grpc-server-kit | `90fce7b4759eae094caf8ba2b8f0f2aef5ac914d` |
-| idempotency-kit | `af413605ddd8b72361330ef5459045cf6eaabfd8` |
-| mattermind | `04344c77790073691d53e77d704665270d6701ef` |
-| omni-box | `c36f99f395f3fe85856d5d22305f1177df83a201` |
-| pg-partsmith | `55c483a01cef9f20e530b7a43f300e190cd833ed` |
-| redis-client-kit | `823a116ac0b5be68599760f7c43df055f1332b5f` |
-| servicewright | `c84440df7596fce04519f3ccc7237e58c7e00aae` |
-| sqlalchemy-foundation-kit | `87e97aa6ea45ae4a681491df4d31eddcfeb56eb6` |
+| aiokafka-foundation-kit | `a609399448c6771f528bde69cfad27400f16b546` |
+| alembic-gauntlet | `1b74059ac166a0e0e03da188918d68766e850830` |
+| clientwright | `0f58abba7c4d038b94156bbfcf499078883ef306` |
+| deadline-budget | `9132b54747d7ddcb296fe0d8aecb549ee29ca336` |
+| grpc-client-kit | `040c5420b48f3938b5d76354773fc1c14417531d` |
+| grpc-server-kit | `05394320aedd31b2423c04e0e000d7d0a94009e0` |
+| idempotency-kit | `f4bc4e4c2cd69ab75b232225337d2a1c6a65d60f` |
+| mattermind | `17691e7f0dff2a99996c8b8f5958860fbdd59bd8` |
+| omni-box | `27e8e3eb8ed62fbc9e8d82bbd20edbf58fa02b7c` |
+| pg-partsmith | `2890538ccabdbd7bf4034ca6f2c951991833cb5f` |
+| redis-client-kit | `e23db4fd40d2f632215884c1149c5b83c7c80543` |
+| servicewright | `e11de17a3f1efc36c1174d5fdd27dc7e393f2bbc` |
+| sqlalchemy-foundation-kit | `adcd6455b475b96650adcd1aa4d6f0690c7aaa1d` |
 
 ## Expectation
 
@@ -44,19 +42,19 @@ That is `defaults.packs` of `targets.yml`, with `agents` placed before the packs
 
 | Repository | Outcome | Create | Update | Delete |
 |---|---|---:|---:|---:|
-| `bedrock-python/aiokafka-foundation-kit` | opened | 1 | 9 | 0 |
-| `bedrock-python/alembic-gauntlet` | opened | 1 | 9 | 0 |
-| `bedrock-python/clientwright` | opened | 1 | 9 | 0 |
-| `bedrock-python/deadline-budget` | opened | 1 | 9 | 0 |
-| `bedrock-python/grpc-client-kit` | opened | 1 | 9 | 0 |
-| `bedrock-python/grpc-server-kit` | opened | 1 | 9 | 0 |
-| `bedrock-python/idempotency-kit` | opened | 1 | 9 | 0 |
-| `bedrock-python/mattermind` | opened | 1 | 9 | 0 |
-| `bedrock-python/omni-box` | opened | 1 | 9 | 0 |
-| `bedrock-python/pg-partsmith` | opened | 1 | 9 | 0 |
-| `bedrock-python/redis-client-kit` | opened | 1 | 9 | 0 |
-| `bedrock-python/servicewright` | opened | 1 | 9 | 0 |
-| `bedrock-python/sqlalchemy-foundation-kit` | opened | 1 | 9 | 0 |
+| `bedrock-python/aiokafka-foundation-kit` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/alembic-gauntlet` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/clientwright` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/deadline-budget` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/grpc-client-kit` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/grpc-server-kit` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/idempotency-kit` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/mattermind` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/omni-box` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/pg-partsmith` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/redis-client-kit` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/servicewright` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/sqlalchemy-foundation-kit` | unchanged | 0 | 0 | 0 |
 
 | Path | Pack | State | Exceptions | Sensitive |
 |---|---|---|---|---|
@@ -70,21 +68,21 @@ That is `defaults.packs` of `targets.yml`, with `agents` placed before the packs
 | `.github/workflows/release-please.yml` | bedrock-community | current | - | yes |
 | `CODE_OF_CONDUCT.md` | bedrock-community | current | - | no |
 | `.agents/project.md` | agents | local | - | no |
-| `.agents/prompts/pure-refactor.md` | agents | missing | - | no |
-| `.agents/prompts/refactor-check.md` | agents | outdated | - | no |
-| `.agents/prompts/review.md` | agents | outdated | - | no |
-| `AGENTS.md` | agents | outdated | - | no |
-| `.claude/agents/reviewer.md` | claude | outdated | - | yes |
+| `.agents/prompts/pure-refactor.md` | agents | current | - | no |
+| `.agents/prompts/refactor-check.md` | agents | current | - | no |
+| `.agents/prompts/review.md` | agents | current | - | no |
+| `AGENTS.md` | agents | current | - | no |
+| `.claude/agents/reviewer.md` | claude | current | - | yes |
 | `.claude/settings.json` | claude | current | - | yes |
 | `.claude/skills/commit/SKILL.md` | claude | current | - | yes |
 | `.claude/skills/new-branch/SKILL.md` | claude | current | - | yes |
-| `.claude/skills/pr/SKILL.md` | claude | outdated | - | yes |
-| `.claude/skills/review-change/SKILL.md` | claude | outdated | - | yes |
+| `.claude/skills/pr/SKILL.md` | claude | current | - | yes |
+| `.claude/skills/review-change/SKILL.md` | claude | current | - | yes |
 | `.claude/skills/spec/SKILL.md` | claude | current | - | yes |
-| `CLAUDE.md` | claude | outdated | - | no |
+| `CLAUDE.md` | claude | current | - | no |
 | `.agents/guidelines/public-api.md` | python-library | current | - | no |
-| `.agents/guidelines/python.md` | python-library | outdated | - | no |
-| `.agents/guidelines/testing.md` | python-library | outdated | - | no |
+| `.agents/guidelines/python.md` | python-library | current | - | no |
+| `.agents/guidelines/testing.md` | python-library | current | - | no |
 
 Sensitive files are those the pull request description lists under ⚠: touchmark's built-in list (workflows, `dependabot.yml`, `.claude/settings*.json`, `.claude/agents/**`, `.claude/skills/**`, ...) and `sensitive_paths` of `hub.yml`. Skills are on the list because a skill's `allowed-tools` lets Claude Code use those tools without asking.
 
