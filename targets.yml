@@ -16,9 +16,10 @@ version: 1
 
 defaults:
   # zensical-docs and bedrock-community ship what the libraries already have,
-  # so they connect with an empty diff (expected.md); the starter packs are
-  # new everywhere, and they are what the first sync pull requests carry.
-  packs: [zensical-docs, bedrock-community, agents, claude, python-library]
+  # so they connected with an empty diff; agents, claude and python-library
+  # are the template's starter packs, ai-review and workflow two of its
+  # opt-in packs, which every library takes as well.
+  packs: [zensical-docs, bedrock-community, agents, claude, python-library, ai-review, workflow]
   # The hub subscribes the libraries itself: they share one owner with it. A
   # library opts out with enabled: false in its .engineering-assets.yml.
   opt_in: assumed
