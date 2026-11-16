@@ -4,37 +4,35 @@ touchmark's check against a real fleet: `touchmark plan --assume-opt-in --all` o
 
 ## Where it stands
 
-The rollout finished on 2026-10-07 (README, "Rollout"), and the deeper starter packs of 2026-10-11 (#13) reached every library the same day. This change takes the template's `ai-review` and `workflow` packs into every library and updates `agents` and `claude` from the template, so the plan opens one sync pull request in each library: the 18 new files of the two packs, and 8 files of `agents` and `claude` updated. What differs otherwise, differs on purpose, as before:
+The rollout finished on 2026-10-07 (README, "Rollout"); the deeper starter packs of 2026-10-11 (#13) and the template's `ai-review` and `workflow` packs of 2026-11-15 (#17-#19) reached every library: all 13 sync pull requests are merged. Every library has the hub's files, so a plan changes nothing anywhere. What differs, differs on purpose:
 
-- every library filled in `.agents/project.md`, which is therefore its own (`local`), so the template's new lines in the profile skeleton reach none of them;
+- every library filled in `.agents/project.md`, which is therefore its own (`local`);
 - mattermind keeps its own `.github/workflows/docs.yml`, since its docs dependencies are an extra, and pg-partsmith its own `.github/dependabot.yml`, which adds the `docker` ecosystem. Their `.engineering-assets.yml` lists those files under `ignore`.
-
-Once the 13 sync pull requests are merged, the expectation goes back to "nothing changes anywhere": the outcomes `unchanged` with no counts, and the states below `current`.
 
 The expectation holds while:
 
 - only mattermind and pg-partsmith have an `.engineering-assets.yml`, and it only ignores those files. `targets.yml` subscribes every target (`defaults.opt_in: assumed`), so `--assume-opt-in` changes nothing;
 - the organisation's repositories with the topic `python`, minus the `exclude` patterns of `targets.yml`, are these 13. A new one shows up as an unexpected target;
-- touchmark has no open sync pull request in any target, before the merge of this change;
+- touchmark has no open sync pull request in any target;
 - the packs and the libraries' copies stay as they are. A change to a pack makes the copies `outdated` and the plan `opened`; a library that changes a copy makes it `local`. Either way, write the expectation again.
 
-The default branches it was checked at, on 2026-11-15:
+The default branches it was checked at, on 2026-11-16:
 
 | Repository | Commit |
 |---|---|
-| aiokafka-foundation-kit | `62d5e126485fe9f7a5eccc26aa66fe8d0ffa7f48` |
-| alembic-gauntlet | `de2170d0609228deb11f2e056e1cbb35a11f1119` |
-| clientwright | `8d5835e59545614bca7849ce1b68426e52e12c61` |
-| deadline-budget | `158de0215a25192a9f6e070bb812cc1bb4e7635d` |
-| grpc-client-kit | `6b333b9551c6db622cfd839ca21acde4d241f19f` |
-| grpc-server-kit | `f9f9c609867f42cef528f14864b0b55657a7876e` |
-| idempotency-kit | `1bf9a264acd21d96cd2284b7683bf458c012a41a` |
-| mattermind | `771c92abb025dfb623163cc2918209d64d735a7f` |
-| omni-box | `6b0f9728a5697ce8e8b07091c7e8ef8b2e90fef8` |
-| pg-partsmith | `eb29d57456f1fe74a68dd9a26e663a4d1b20c7e5` |
-| redis-client-kit | `ccf50c262492a50a44ff6a4e93c7ee4a879d5994` |
-| servicewright | `805c4d090b61b1d2ed995f3d6d423a979d2cdf82` |
-| sqlalchemy-foundation-kit | `ce9b15cbde116facfb9e9435009c04f06a0413b7` |
+| aiokafka-foundation-kit | `546d55c192e4bd34307cddcee1ee3773e57acaf5` |
+| alembic-gauntlet | `40d0248ff1f572eec46e1109fbef75d8cd12de79` |
+| clientwright | `bf0180c6c86a245a982388c5692bb4b3d99f6306` |
+| deadline-budget | `113f7125449cc92e94d9f74bfe0015d4dae42a49` |
+| grpc-client-kit | `c753921317e309fb42e352380655ac616aadd070` |
+| grpc-server-kit | `f057d6cfffdc6460c22b6cb7a45297885e79a4f7` |
+| idempotency-kit | `98d63b79e3c4fe148541489ca7dcf1bddd7840d5` |
+| mattermind | `1335af8f2b039c366b8fe2077c5eedf91d2e8c4a` |
+| omni-box | `3fa8677ece901ed683a816b44e2b8865a86c3fa4` |
+| pg-partsmith | `de42af8cfc4366d16a2413fa6f67752431fdc466` |
+| redis-client-kit | `b8532f51668a199f7d7bb0660eba66c9bf373856` |
+| servicewright | `3e147a0840d4cde6b7899a140e231ef5ad535e44` |
+| sqlalchemy-foundation-kit | `b1b3ede2d01a43f0b60a2d3a7fe21c1e4f10164f` |
 
 ## Expectation
 
@@ -44,19 +42,19 @@ That is `defaults.packs` of `targets.yml`, with `agents` placed before the packs
 
 | Repository | Outcome | Create | Update | Delete |
 |---|---|---:|---:|---:|
-| `bedrock-python/aiokafka-foundation-kit` | opened | 18 | 8 | 0 |
-| `bedrock-python/alembic-gauntlet` | opened | 18 | 8 | 0 |
-| `bedrock-python/clientwright` | opened | 18 | 8 | 0 |
-| `bedrock-python/deadline-budget` | opened | 18 | 8 | 0 |
-| `bedrock-python/grpc-client-kit` | opened | 18 | 8 | 0 |
-| `bedrock-python/grpc-server-kit` | opened | 18 | 8 | 0 |
-| `bedrock-python/idempotency-kit` | opened | 18 | 8 | 0 |
-| `bedrock-python/mattermind` | opened | 18 | 8 | 0 |
-| `bedrock-python/omni-box` | opened | 18 | 8 | 0 |
-| `bedrock-python/pg-partsmith` | opened | 18 | 8 | 0 |
-| `bedrock-python/redis-client-kit` | opened | 18 | 8 | 0 |
-| `bedrock-python/servicewright` | opened | 18 | 8 | 0 |
-| `bedrock-python/sqlalchemy-foundation-kit` | opened | 18 | 8 | 0 |
+| `bedrock-python/aiokafka-foundation-kit` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/alembic-gauntlet` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/clientwright` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/deadline-budget` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/grpc-client-kit` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/grpc-server-kit` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/idempotency-kit` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/mattermind` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/omni-box` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/pg-partsmith` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/redis-client-kit` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/servicewright` | unchanged | 0 | 0 | 0 |
+| `bedrock-python/sqlalchemy-foundation-kit` | unchanged | 0 | 0 | 0 |
 
 | Path | Pack | State | Exceptions | Sensitive |
 |---|---|---|---|---|
@@ -73,36 +71,36 @@ That is `defaults.packs` of `targets.yml`, with `agents` placed before the packs
 | `.agents/prompts/pure-refactor.md` | agents | current | - | no |
 | `.agents/prompts/refactor-check.md` | agents | current | - | no |
 | `.agents/prompts/review.md` | agents | current | - | no |
-| `AGENTS.md` | agents | outdated | - | no |
-| `.claude/agents/reviewer.md` | claude | outdated | - | yes |
+| `AGENTS.md` | agents | current | - | no |
+| `.claude/agents/reviewer.md` | claude | current | - | yes |
 | `.claude/settings.json` | claude | current | - | yes |
-| `.claude/skills/commit/SKILL.md` | claude | outdated | - | yes |
-| `.claude/skills/new-branch/SKILL.md` | claude | outdated | - | yes |
-| `.claude/skills/pr/SKILL.md` | claude | outdated | - | yes |
-| `.claude/skills/review-change/SKILL.md` | claude | outdated | - | yes |
-| `.claude/skills/spec/SKILL.md` | claude | outdated | - | yes |
-| `CLAUDE.md` | claude | outdated | - | no |
+| `.claude/skills/commit/SKILL.md` | claude | current | - | yes |
+| `.claude/skills/new-branch/SKILL.md` | claude | current | - | yes |
+| `.claude/skills/pr/SKILL.md` | claude | current | - | yes |
+| `.claude/skills/review-change/SKILL.md` | claude | current | - | yes |
+| `.claude/skills/spec/SKILL.md` | claude | current | - | yes |
+| `CLAUDE.md` | claude | current | - | no |
 | `.agents/guidelines/public-api.md` | python-library | current | - | no |
 | `.agents/guidelines/python.md` | python-library | current | - | no |
 | `.agents/guidelines/testing.md` | python-library | current | - | no |
-| `.agents/review/README.md` | ai-review | missing | - | no |
-| `.agents/review/check.py` | ai-review | missing | - | yes |
-| `.agents/review/directions/compatibility.md` | ai-review | missing | - | no |
-| `.agents/review/directions/correctness.md` | ai-review | missing | - | no |
-| `.agents/review/directions/design.md` | ai-review | missing | - | no |
-| `.agents/review/directions/performance.md` | ai-review | missing | - | no |
-| `.agents/review/directions/security.md` | ai-review | missing | - | no |
-| `.agents/review/directions/tests.md` | ai-review | missing | - | no |
-| `.agents/review/pure-refactor.md` | ai-review | missing | - | no |
-| `.agents/review/review.md` | ai-review | missing | - | no |
-| `.agents/skills/review-change/SKILL.md` | ai-review | missing | - | yes |
-| `.agents/skills/commit/SKILL.md` | workflow | missing | - | yes |
-| `.agents/skills/implement/SKILL.md` | workflow | missing | - | yes |
-| `.agents/skills/new-branch/SKILL.md` | workflow | missing | - | yes |
-| `.agents/skills/pr/SKILL.md` | workflow | missing | - | yes |
-| `.agents/skills/spec/SKILL.md` | workflow | missing | - | yes |
-| `.claude/skills/implement/SKILL.md` | workflow | missing | - | yes |
-| `local/.gitignore` | workflow | missing | - | no |
+| `.agents/review/README.md` | ai-review | current | - | no |
+| `.agents/review/check.py` | ai-review | current | - | yes |
+| `.agents/review/directions/compatibility.md` | ai-review | current | - | no |
+| `.agents/review/directions/correctness.md` | ai-review | current | - | no |
+| `.agents/review/directions/design.md` | ai-review | current | - | no |
+| `.agents/review/directions/performance.md` | ai-review | current | - | no |
+| `.agents/review/directions/security.md` | ai-review | current | - | no |
+| `.agents/review/directions/tests.md` | ai-review | current | - | no |
+| `.agents/review/pure-refactor.md` | ai-review | current | - | no |
+| `.agents/review/review.md` | ai-review | current | - | no |
+| `.agents/skills/review-change/SKILL.md` | ai-review | current | - | yes |
+| `.agents/skills/commit/SKILL.md` | workflow | current | - | yes |
+| `.agents/skills/implement/SKILL.md` | workflow | current | - | yes |
+| `.agents/skills/new-branch/SKILL.md` | workflow | current | - | yes |
+| `.agents/skills/pr/SKILL.md` | workflow | current | - | yes |
+| `.agents/skills/spec/SKILL.md` | workflow | current | - | yes |
+| `.claude/skills/implement/SKILL.md` | workflow | current | - | yes |
+| `local/.gitignore` | workflow | current | - | no |
 
 Sensitive files are those the pull request description lists under ⚠: touchmark's built-in list (workflows, `dependabot.yml`, `.claude/settings*.json`, `.claude/agents/**`, `.claude/skills/**`, `.agents/skills/**`, ...) and `sensitive_paths` of `hub.yml`, which adds `.agents/review/check.py`. Skills are on the list because a skill's `allowed-tools` lets Claude Code use those tools without asking.
 
